@@ -1,0 +1,1 @@
+export const generateSpriteImage = (pokemonId: number) => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`
