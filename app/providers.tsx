@@ -4,7 +4,7 @@ import { ReactNode, useEffect } from "react";
 import {
   createPokedexStore,
   PokedexStoreProvider,
-} from "./providers/pokedex-provider";
+} from "../providers/pokedex-provider";
 
 const pokedex = createPokedexStore();
 

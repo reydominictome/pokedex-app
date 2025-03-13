@@ -1,6 +1,6 @@
 'use client';
 
-import Pokedex from "./widgets/pokedex";
+import Pokedex from "@/widgets/pokedex";
 
 export default function Home() {
   return (
