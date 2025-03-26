@@ -5,6 +5,8 @@ import { PokemonSprite, PokemonStats } from "@/types/pokemon";
 import { POKEMON_TYPE_COLORS } from "@/constants/types";
 import { POKEMON_STAT_LABLES } from "@/constants/stats";
 import ProgressBar from "@/components/progress";
+import PokemonTypes from "../pokemon-types";
+import PokemonStatus from "../pokemon-status";
 
 type PokemonCardProps = {
   name?: string;
@@ -47,43 +49,9 @@ function PokedexProfile({ name, types, sprites, stats }: PokemonCardProps) {
       <div className="flex flex-col gap-4">
         <div className="flex flex-col">
           <h1 className="capitalize text-3xl">{name}</h1>
-          <div className="flex gap-2">
-            {types?.map((t) => {
-              return (
-                <span
-                  style={{
-                    backgroundColor: POKEMON_TYPE_COLORS[t],
-                  }}
-                  className={`capitalize text-white p-1 rounded-lg`}
-                >
-                  {t}
-                </span>
-              );
-            })}
-          </div>
+          <PokemonTypes types={types} />
         </div>
-        <div className="flex flex-col gap-4">
-          <h1 className="capitalize text-2xl">Stats</h1>
-          <div className="flex flex-col gap-2">
-            {stats?.map((stat) => (
-              <StatusBar
-                label={POKEMON_STAT_LABLES[stat.stat.name]}
-                value={stat.base_stat}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function StatusBar({ label, value }: { label: string; value: number }) {
-  return (
-    <div style={{ gridTemplateColumns: "60px 1fr" }} className="grid gap-4">
-      <span>{label}</span>
-      <div className="w-[260px]">
-        <ProgressBar max={255} value={value} />
+        <PokemonStatus stats={stats} />
       </div>
     </div>
   );

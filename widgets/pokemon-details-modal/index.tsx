@@ -20,7 +20,7 @@ function PokemonDetailsModal() {
   const onAddToFavorites = async () => {
     const { error } = await supabase
       .from("pokemon")
-      .insert({ owner_id: user.id, pokemon_name: name });
+      .insert({ owner_id: user.id, name: name });
   };
 
   useEffect(() => {

@@ -6,7 +6,7 @@ import { ThemeSwitcher } from "./theme-switcher";
 import { useAuthActions } from "@/hooks/use-auth-actions";
 import { useUserStore } from "@/providers/user-provider";
 
-export default function AuthButton() {
+export default function HeaderAuth() {
   const { signOut } = useAuthActions();
   const user = useUserStore((store) => store.user);
   const { email } = user || {};

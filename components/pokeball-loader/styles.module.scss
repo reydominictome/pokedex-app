@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+// Variables
+$pokeball-size: 80px;
+$pokeball-border: 4px;
+$pokeball-red: #ff0000;
+$pokeball-white: #ffffff;
+$pokeball-black: #000000;
+
+.preloader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// Pokéball Loader
+.pokeball-loader {
+  width: $pokeball-size;
+  height: $pokeball-size;
+  background: radial-gradient(circle, $pokeball-white 50%, $pokeball-black 51%), $pokeball-red;
+  border-radius: 50%;
+  position: relative;
+  border: $pokeball-border solid $pokeball-black;
+  overflow: hidden;
+  animation: bounce 1s infinite alternate ease-in-out, spin 1s infinite linear;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background: $pokeball-red;
+    top: 0;
+    left: 0;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background: $pokeball-white;
+    bottom: 0;
+    left: 0;
+  }
+
+  .center-button {
+    width: 20px;
+    height: 20px;
+    background: $pokeball-white;
+    border-radius: 50%;
+    border: $pokeball-border solid $pokeball-black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+// Loading Text (Pokémon-style)
+.loading-text {
+  font-family: "Press Start 2P", sans-serif;
+  font-size: 14px;
+  color: #333;
+  margin-top: 16px;
+  text-shadow: 2px 2px 0px $pokeball-black;
+  animation: fade 1.5s infinite;
+}
+
+// Animations
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes bounce {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-20px); }
+}
+
+@keyframes fade {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}

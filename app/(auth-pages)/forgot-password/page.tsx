@@ -1,10 +1,9 @@
-'use client';
+"use client";
 
 import { SubmitButton } from "@/components/submit-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import { SmtpMessage } from "../smtp-message";
 import { useAuthActions } from "@/hooks/use-auth-actions";
 
 export default function ForgotPassword() {
@@ -40,7 +39,6 @@ export default function ForgotPassword() {
           <SubmitButton>Reset Password</SubmitButton>
         </div>
       </form>
-      <SmtpMessage />
     </>
   );
 }
