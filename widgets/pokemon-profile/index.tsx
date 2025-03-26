@@ -3,9 +3,9 @@ import React from "react";
 import Pokeball from "@/images/pokeball.png";
 import { PokemonSprite, PokemonStats } from "@/types/pokemon";
 import { POKEMON_TYPE_COLORS } from "@/constants/types";
-import { Progress } from "@radix-ui/react-progress";
 import { POKEMON_STAT_LABLES } from "@/constants/stats";
 import ProgressBar from "@/components/progress";
+import { Button } from "@/components/ui/button";
 
 type PokemonCardProps = {
   name?: string;
@@ -67,18 +67,22 @@ function PokedexProfile({ name, types, sprites, stats }: PokemonCardProps) {
           <h1 className="capitalize text-2xl">Stats</h1>
           <div className="flex flex-col gap-2">
             {stats?.map((stat) => (
-              <StatusBar label={POKEMON_STAT_LABLES[stat.stat.name]} value={stat.base_stat} />
+              <StatusBar
+                label={POKEMON_STAT_LABLES[stat.stat.name]}
+                value={stat.base_stat}
+              />
             ))}
           </div>
         </div>
       </div>
+      {/* <AddToFavoriteButton /> */}
     </div>
   );
 }
 
 function StatusBar({ label, value }: { label: string; value: number }) {
   return (
-    <div style={{ gridTemplateColumns: '60px 1fr', }} className="grid gap-4">
+    <div style={{ gridTemplateColumns: "60px 1fr" }} className="grid gap-4">
       <span>{label}</span>
       <div className="w-[260px]">
         <ProgressBar max={255} value={value} />

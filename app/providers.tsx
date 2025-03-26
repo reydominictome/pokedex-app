@@ -5,8 +5,10 @@ import {
   createPokedexStore,
   PokedexStoreProvider,
 } from "../providers/pokedex-provider";
+import { createUserStore, UserStoreProvider } from "@/providers/user-provider";
 
 const pokedex = createPokedexStore();
+const user = createUserStore();
 
 export default function Providers({ children }: { children: ReactNode }) {
   useEffect(() => {
@@ -42,8 +44,10 @@ export default function Providers({ children }: { children: ReactNode }) {
         (self as any).skipWaiting();
       });
   }, []);
-  
+
   return (
-    <PokedexStoreProvider value={pokedex}>{children}</PokedexStoreProvider>
+    <UserStoreProvider value={user}>
+      <PokedexStoreProvider value={pokedex}>{children}</PokedexStoreProvider>
+    </UserStoreProvider>
   );
 }

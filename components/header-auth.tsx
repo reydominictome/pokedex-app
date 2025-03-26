@@ -1,23 +1,23 @@
-import { signOutAction } from "@/app/actions";
+'use client';
+
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { createClient } from "@/utils/supabase/server";
 import { ThemeSwitcher } from "./theme-switcher";
+import { useAuthActions } from "@/hooks/use-auth-actions";
+import { useUserStore } from "@/providers/user-provider";
 
-export default async function AuthButton() {
-  const supabase = await createClient();
+export default function AuthButton() {
+  const { signOut } = useAuthActions();
+  const user = useUserStore((store) => store.user);
+  const { email } = user || {};
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  const name = user?.email?.split("@")[0];
+  const name = email?.split('@')?.[0] || 'Pokemon Master';
 
   return user ? (
     <div className="flex items-center gap-4">
       <ThemeSwitcher />
       Hey, {name}!
-      <form action={signOutAction}>
+      <form action={signOut}>
         <Button type="submit" variant={"outline"}>
           Sign out
         </Button>
