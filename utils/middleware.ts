@@ -10,8 +10,6 @@ export const updateSession = async (request: NextRequest) => {
     const supabase = supabaseServer(request);
     const { data: user, error } = await supabase.auth.getUser();
 
-    console.log(request);
-
     // Redirect if user is not authenticated for protected routes
     if (!user && request.nextUrl.pathname.startsWith("/dex") && error) {
       return NextResponse.redirect(new URL("/sign-in", request.url));

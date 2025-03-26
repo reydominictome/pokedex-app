@@ -5,7 +5,6 @@ import { PokemonSprite, PokemonStats } from "@/types/pokemon";
 import { POKEMON_TYPE_COLORS } from "@/constants/types";
 import { POKEMON_STAT_LABLES } from "@/constants/stats";
 import ProgressBar from "@/components/progress";
-import { Button } from "@/components/ui/button";
 
 type PokemonCardProps = {
   name?: string;
@@ -75,7 +74,6 @@ function PokedexProfile({ name, types, sprites, stats }: PokemonCardProps) {
           </div>
         </div>
       </div>
-      {/* <AddToFavoriteButton /> */}
     </div>
   );
 }

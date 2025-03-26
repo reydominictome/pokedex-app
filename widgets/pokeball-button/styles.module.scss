@@ -1,0 +1,126 @@
+// Import Pokémon-like font
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+// Variables for styling
+$pokeball-size: 50px;
+$pokeball-border: 4px;
+$pokeball-color-red: red;
+$pokeball-color-white: white;
+$text-box-width: 180px;
+
+.pokeball-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover .tooltip {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+.pokeball {
+  width: $pokeball-size;
+  height: $pokeball-size;
+  background:
+    radial-gradient(circle, $pokeball-color-white 50%, black 51%),
+    $pokeball-color-red;
+  border-radius: 50%;
+  position: relative;
+  border: $pokeball-border solid black;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease-in-out;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &::before {
+    background: $pokeball-color-red;
+    top: 0;
+    left: 0;
+  }
+
+  &::after {
+    background: $pokeball-color-white;
+    bottom: 0;
+    left: 0;
+  }
+
+  &:hover::before {
+    transform: translateY(-5px);
+  }
+
+  &:hover::after {
+    transform: translateY(5px);
+  }
+
+  &:hover .center-button {
+    transform: translate(-50%, -70%);
+  }
+}
+
+.center-button {
+  z-index: 1;
+  width: 20px;
+  height: 20px;
+  background: $pokeball-color-white;
+  border-radius: 50%;
+  border: $pokeball-border solid black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Tooltip */
+.tooltip {
+  position: absolute;
+  bottom: 120%;
+  left: -30px;
+  transform: translateX(-25%) scale(0);
+  opacity: 0;
+  transition:
+    opacity 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+  z-index: 10;
+
+  .tooltip-content {
+    background: white;
+    border: 4px solid black;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: "Press Start 2P", sans-serif;
+    text-align: center;
+    width: $text-box-width;
+    box-shadow: 4px 4px 0px black;
+    position: relative;
+
+    /* Classic Pokémon text-box border style */
+    &::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: none;
+      border: 4px solid black;
+      border-radius: 8px;
+      top: 3px;
+      left: 3px;
+      z-index: -1;
+    }
+  }
+}
