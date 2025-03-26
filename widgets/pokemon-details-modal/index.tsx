@@ -8,6 +8,7 @@ import { useUserStore } from "@/providers/user-provider";
 import { Button } from "@/components/ui/button";
 import PokeballButton from "../pokeball-button";
 import supabase from "@/config/supabaseConfig";
+import PokeballPreloader from "@/components/pokeball-loader";
 
 function PokemonDetailsModal() {
   const pokedex = usePokedexStore((state) => state.pokedex)!;
@@ -46,7 +47,11 @@ function PokemonDetailsModal() {
       }}
     >
       <div className="p-4 bg-[#e5e7eb] flex flex-col">
-        {pokemon && <PokedexProfile {...profileProps} />}
+        {pokemon ? (
+          <PokedexProfile {...profileProps} />
+        ) : (
+          <PokeballPreloader text="A wild encounter is coming..." />
+        )}
       </div>
       {user && (
         <footer className="p-4 bg-[#ef5350] flex justify-end">
